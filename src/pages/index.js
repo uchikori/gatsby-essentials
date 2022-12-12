@@ -1,7 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-// import { GatsbyImage } from "gatsby-plugin-image"
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
+// import { StaticImage } from "gatsby-plugin-image";
 
 export default function Home(props){
   const {data} = props;
@@ -27,15 +27,14 @@ export default function Home(props){
 
       <section className="hero">
         <figure>
-          {/* <GatsbyImage image={data.file.childImageSharp.gatsbyImageData} alt="" /> */}
-          <StaticImage 
+          <GatsbyImage image={data.hero.childImageSharp.gatsbyImageData} alt="" />
+          {/* <StaticImage 
           src="../images/hero.jpg"
           layout="fullWidth"
-          style={{ height: "100%" }}
           alt=""
           placeholder="blurred"
           quality="65"
-          />
+          /> */}
         </figure>
         <div className="catch">
           <h1>There is no love sincerer than<br /> the love of food.</h1>
@@ -54,7 +53,8 @@ export default function Home(props){
           <div className="details">
             <div className="detail">
               <figure>
-                <img src="/images/fruit.jpg" alt="" />
+              <GatsbyImage image={data.fruit.childImageSharp.gatsbyImageData} alt="" />
+                {/* <img src="/images/fruit.jpg" alt="" /> */}
               </figure>
               <h3>フルーツ</h3>
               <p>FRUIT</p>
@@ -63,7 +63,7 @@ export default function Home(props){
 
             <div className="detail">
               <figure>
-                <img src="/images/grain.jpg" alt="" />
+                <GatsbyImage image={data.grain.childImageSharp.gatsbyImageData} alt="" />
               </figure>
               <h3>穀物</h3>
               <p>GRAIN</p>
@@ -72,7 +72,7 @@ export default function Home(props){
 
             <div className="detail">
               <figure>
-                <img src="/images/beverage.jpg" alt="" />
+                <GatsbyImage image={data.beverage.childImageSharp.gatsbyImageData} alt="" />
               </figure>
               <h3>飲み物</h3>
               <p>BEVERAGE</p>
@@ -85,7 +85,7 @@ export default function Home(props){
       <section className="photo">
         <h2 className="sr-only">Photo</h2>
         <figure>
-          <img src="/images/berry.jpg" alt="赤く熟したベリー" />
+          <GatsbyImage image={data.berry.childImageSharp.gatsbyImageData} alt="赤く熟したベリー" />
         </figure>
       </section>
 
@@ -125,10 +125,35 @@ export default function Home(props){
 };
 
 export const query = graphql`
-query MyQuery {
-  file(relativePath: {eq: "hero.jpg"}) {
+query {
+  hero: file(relativePath: {eq: "hero.jpg"}) {
     childImageSharp {
-      gatsbyImageData(layout: FULL_WIDTH)
+      gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+    }
+  }
+  fruit: file(relativePath: {eq: "fruit.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width:320, layout: CONSTRAINED)
+    }
+  }
+  grain: file(relativePath: {eq: "grain.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width:320, layout: CONSTRAINED)
+    }
+  }
+  beverage: file(relativePath: {eq: "beverage.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width:320, layout: CONSTRAINED)
+    }
+  }
+  berry: file(relativePath: {eq: "berry.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(layout:FULL_WIDTH)
+    }
+  }
+  pattern: file(relativePath: {eq: "pattern.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(quality:90, layout: FULL_WIDTH)
     }
   }
 }
