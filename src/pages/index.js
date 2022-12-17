@@ -18,8 +18,8 @@ export default function Home(props){
           
           <nav className="nav">
             <ul>
-              <li><a href="base-index.html">TOP</a></li>
-              <li><a href="base-about.html">ABOUT</a></li>
+              <li className={"gNavi__text"}><a href="base-index.html">TOP</a></li>
+              <li className={"gNavi__text"}><a href="base-about.html">ABOUT</a></li>
             </ul>
           </nav>
         </div>

@@ -1,0 +1,10 @@
+@use '../global' as g;
+.gNavi{
+    &__text{
+        @include g.font-style(40px, g.$color-pink, 700, 1, 0);
+        background-color: black;
+        @include g.pc{
+            font-size: 4rem;
+        }
+    }
+}
