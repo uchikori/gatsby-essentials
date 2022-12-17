@@ -2,10 +2,10 @@
 //英字+日本語タイトル
 .title{
     &__ja{
-        @include g.font-style(40px, g.$color-pink, 700, 1, 0);
-        background-color: black;
+        @include g.font-style(24px, g.$color-pink, 700, 1, 0);
+        // background-color: black;
         @include g.pc{
-            font-size: 4rem;
+            font-size: 2.4rem;
         }
         &_color_white{
             @include g.font-style(20px, g.$color-white, 700, 1, 0);
