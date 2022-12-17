@@ -130,32 +130,71 @@ export const query = graphql`
 query {
   hero: file(relativePath: {eq: "hero.jpg"}) {
     childImageSharp {
-      gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+      gatsbyImageData(
+        layout: FULL_WIDTH, 
+        placeholder: BLURRED,
+        webpOptions:{
+          quality:85
+        }
+      )
     }
   }
   fruit: file(relativePath: {eq: "fruit.jpg"}) {
     childImageSharp {
-      gatsbyImageData(width:320, layout: CONSTRAINED)
+      gatsbyImageData(
+        width:320, 
+        layout: CONSTRAINED,
+        placeholder: BLURRED,
+        webpOptions:{
+          quality:85
+        }
+      )
     }
   }
   grain: file(relativePath: {eq: "grain.jpg"}) {
     childImageSharp {
-      gatsbyImageData(width:320, layout: CONSTRAINED)
+      gatsbyImageData(
+        width:320, 
+        layout: CONSTRAINED,
+        placeholder: BLURRED,
+        webpOptions:{
+          quality:85
+        }
+      )
     }
   }
   beverage: file(relativePath: {eq: "beverage.jpg"}) {
     childImageSharp {
-      gatsbyImageData(width:320, layout: CONSTRAINED)
+      gatsbyImageData(
+        width:320, 
+        layout: CONSTRAINED,
+        placeholder: BLURRED,
+        webpOptions:{
+          quality:85
+        }
+      )
     }
   }
   berry: file(relativePath: {eq: "berry.jpg"}) {
     childImageSharp {
-      gatsbyImageData(layout:FULL_WIDTH)
+      gatsbyImageData(
+        layout:FULL_WIDTH,
+        webpOptions:{
+          quality:85
+        }
+      )
     }
   }
   pattern: file(relativePath: {eq: "pattern.jpg"}) {
     childImageSharp {
-      gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, quality: 89)
+      gatsbyImageData(
+        layout: FULL_WIDTH, 
+        placeholder: BLURRED, 
+        quality: 89,
+        webpOptions:{
+          quality:85
+        }
+      )
     }
   }
 }
