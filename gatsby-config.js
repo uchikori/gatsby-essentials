@@ -17,7 +17,7 @@ module.exports = {
       resolve: `gatsby-plugin-sass`,
       options: {
         sassOptions: {
-          includePaths: path.join[__dirname, 'styles'],
+          includePaths: path.join[__dirname, 'components/styles'],
         },
         // Override the file regex for Sass
         sassRuleTest: /\.s(a|c)ss$/,

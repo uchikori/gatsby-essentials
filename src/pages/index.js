@@ -1,8 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Header } from "../components/header";
-import { Footer } from "../components/footer";
 import { Layout } from "../components/Layout";
 // import { StaticImage } from "gatsby-plugin-image";
 
@@ -134,18 +132,6 @@ query {
     childImageSharp {
       gatsbyImageData(
         layout:FULL_WIDTH,
-        webpOptions:{
-          quality:85
-        }
-      )
-    }
-  }
-  pattern: file(relativePath: {eq: "pattern.jpg"}) {
-    childImageSharp {
-      gatsbyImageData(
-        layout: FULL_WIDTH, 
-        placeholder: BLURRED, 
-        quality: 89,
         webpOptions:{
           quality:85
         }

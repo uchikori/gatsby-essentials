@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+import * as header from './styles/header.module.scss';
 
 export const Header = () => {
     return (
@@ -12,8 +13,8 @@ export const Header = () => {
             
             <nav className="nav">
                 <ul>
-                <li className={"title__ja"}><a href="base-index.html">TOP</a></li>
-                <li className={"title__ja"}><a href="base-about.html">ABOUT</a></li>
+                    <li className={header.gNavi__text}><a href="base-index.html">TOP</a></li>
+                    <li className={header.gNavi__text}><a href="base-about.html">ABOUT</a></li>
                 </ul>
             </nav>
             </div>
