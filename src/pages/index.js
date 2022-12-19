@@ -2,6 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Layout } from "../components/Layout";
+import { Seo } from "../components/seo";
 // import { StaticImage } from "gatsby-plugin-image";
 
 export default function Home(props){
@@ -9,6 +10,7 @@ export default function Home(props){
   console.log(data);
   return (
     <>
+      <Seo />
       <Layout>
 
         <section className="hero">
@@ -86,9 +88,6 @@ query {
       gatsbyImageData(
         layout: FULL_WIDTH, 
         placeholder: BLURRED,
-        webpOptions:{
-          quality:85
-        }
       )
     }
   }
@@ -98,9 +97,6 @@ query {
         width:320, 
         layout: CONSTRAINED,
         placeholder: BLURRED,
-        webpOptions:{
-          quality:85
-        }
       )
     }
   }
@@ -110,9 +106,6 @@ query {
         width:320, 
         layout: CONSTRAINED,
         placeholder: BLURRED,
-        webpOptions:{
-          quality:85
-        }
       )
     }
   }
@@ -122,9 +115,6 @@ query {
         width:320, 
         layout: CONSTRAINED,
         placeholder: BLURRED,
-        webpOptions:{
-          quality:85
-        }
       )
     }
   }
@@ -132,9 +122,6 @@ query {
     childImageSharp {
       gatsbyImageData(
         layout:FULL_WIDTH,
-        webpOptions:{
-          quality:85
-        }
       )
     }
   }

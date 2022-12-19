@@ -5,6 +5,7 @@ import { Layout } from "../components/Layout";
 // import { StaticImage } from "gatsby-plugin-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faUtensils, faCheckSquare} from "@fortawesome/free-solid-svg-icons";
+import { Seo } from "../components/seo";
 
 export default function Home(props){
   const {data} = props;
@@ -12,6 +13,10 @@ export default function Home(props){
 
   return (
     <>
+      <Seo 
+      pagetitle={"ESSENTIALSについて"}
+      pagedesc={"食べ物についての情報を発信しているサイトです。"}
+      />
       <Layout>
         <div className="eyecatch">
             <figure>

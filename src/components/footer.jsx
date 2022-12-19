@@ -12,8 +12,7 @@ export const Footer = () => {
                 childImageSharp {
                     gatsbyImageData(
                         layout: FULL_WIDTH, 
-                        placeholder: BLURRED, 
-                        quality: 89
+                        placeholder: BLURRED,
                     )
                 }
             }
