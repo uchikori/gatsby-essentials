@@ -14,6 +14,8 @@ module.exports = {
     title: `ESSENTIALS`,
     description: `おいしい食材と食事を探求するサイト`,
     lang: `ja`,
+    siteUrl: `https://gatsby-firstproject.netlify.app`,
+    locale: `ja_JP`,
   },
   plugins: [
     `gatsby-plugin-image`,

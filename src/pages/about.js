@@ -8,19 +8,23 @@ import {faUtensils, faCheckSquare} from "@fortawesome/free-solid-svg-icons";
 import { Seo } from "../components/seo";
 
 export default function Home(props){
-  const {data} = props;
-  console.log(data);
+  const {data, location} = props;
+  console.log(data)
 
   return (
     <>
       <Seo 
       pagetitle={"ESSENTIALSについて"}
       pagedesc={"食べ物についての情報を発信しているサイトです。"}
+      pagepath={location.pathname}
+      pageimg={data.about.childImageSharp.original.src}
+      pageimgw={data.about.childImageSharp.original.width}
+      pageimgh={data.about.childImageSharp.original.height}
       />
       <Layout>
         <div className="eyecatch">
             <figure>
-                <GatsbyImage image={data.about.childImageSharp.gatsbyImageData} aly="ブルーベリーヨーグルト"/>
+                <GatsbyImage image={data.about.childImageSharp.gatsbyImageData} alt="ブルーベリーヨーグルト"/>
             </figure>
         </div>
 
@@ -68,10 +72,12 @@ query {
       gatsbyImageData(
         layout: FULL_WIDTH, 
         placeholder: BLURRED,
-        webpOptions:{
-          quality:85
-        }
       )
+      original {
+        height
+        src
+        width
+      }
     }
   }
 }
