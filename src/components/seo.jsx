@@ -1,7 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
-import { StaticImage } from "gatsby-plugin-image";
 
 export const Seo = (props) => {
     const {pagetitle, pagedesc, pagepath, pageimg} = props;

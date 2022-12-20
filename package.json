@@ -21,6 +21,8 @@
     "gatsby": "^5.2.0",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-image": "^3.2.0",
+    "gatsby-plugin-manifest": "^5.3.1",
+    "gatsby-plugin-offline": "^6.3.1",
     "gatsby-plugin-react-helmet": "^6.3.0",
     "gatsby-plugin-sass": "^6.2.0",
     "gatsby-plugin-sharp": "^5.2.0",
