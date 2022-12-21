@@ -94,16 +94,16 @@ html{
     //計算式：10px /  デザインカンプの横幅 * 100
     //画面サイズがデザインカンプ幅の時font-size = 10pxになる
     //---------------------------------------------------
-    font-size: calc(10 / 1920 * 100) + vw;
-    @include pc{
-        font-size: calc(10 / 1200 * 100) + vw;
-    }
-    @include tab{
-        font-size: calc(10 / 856 * 100) + vw;
-    }
-    @include sp{
-        font-size: calc(10 / 428 * 100) + vw;
-    }
+    // font-size: calc(10 / 1920 * 100) + vw;
+    // @include pc{
+    //     font-size: calc(10 / 1200 * 100) + vw;
+    // }
+    // @include tab{
+    //     font-size: calc(10 / 856 * 100) + vw;
+    // }
+    // @include sp{
+    //     font-size: calc(10 / 428 * 100) + vw;
+    // }
 }
 body{
     font-family: $font;
