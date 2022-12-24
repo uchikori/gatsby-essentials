@@ -1,11 +1,12 @@
 import { faChevronLeft, faChevronRight, faClock, faFolderOpen, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import { Layout } from "../components/Layout";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS } from "@contentful/rich-text-types";
+import { Seo } from "../components/seo";
 
 const options = {
     renderNode: {
@@ -20,17 +21,23 @@ const options = {
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
             return (
                 <>
-                <GatsbyImage image={node.data.target.gatsbyImageData} alt={node.data.target.description ? node.data.target.description : node.data.target.title}/>
+                    <GatsbyImage image={node.data.target.gatsbyImageData} alt={node.data.target.description ? node.data.target.description : node.data.target.title}/>
                 </>
             )
         },
-    }
+    },
+    renderText: (text) => {
+        return text.split('\n').reduce((children, textSegment, index) => {
+            return [...children, index > 0 && <br key={index} />, textSegment];
+        }, []);
+    },
 }
 export default function Blogpost(props){
-    const { data } = props;
-    console.log(data);
+    const { data, pageContext} = props;
+
     return (
         <>
+            <Seo pageTitle={data.contentfulBlogPost.title} />
             <Layout>
                 <div className="eyecatch">
                     <figure>
@@ -58,24 +65,26 @@ export default function Blogpost(props){
                         </aside>
 
                         <div className="postbody">
-                            <p>
-                                {renderRichText(data.contentfulBlogPost.content, options)}
-                            </p>
+                            {renderRichText(data.contentfulBlogPost.content, options)}
                         </div>
 
                         <ul className="postlink">
-                            <li className="prev">
-                                <a href="base-blogpost.html" rel="prev">
-                                    <FontAwesomeIcon icon={faChevronLeft} />
-                                    <span>前の記事</span>
-                                </a>
-                            </li>
-                            <li className="next">
-                                <a href="base-blogpost.html" rel="next">
-                                    <span>次の記事</span>
-                                    <FontAwesomeIcon icon={faChevronRight} />
-                                </a>
-                            </li>
+                            {pageContext.previous && (
+                                <li className="prev">
+                                    <Link to={`/blog/post/${pageContext.previous.slug}/`} rel="prev">
+                                        <FontAwesomeIcon icon={faChevronLeft} />
+                                        <span>{pageContext.previous.title}</span>
+                                    </Link>
+                                </li>
+                            )}
+                            {pageContext.next && (
+                                <li className="next">
+                                    <Link to={`/blog/post/${pageContext.next.slug}/`} rel="next">
+                                        <span>{pageContext.next.title}</span>
+                                        <FontAwesomeIcon icon={faChevronRight} />
+                                    </Link>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </article>
@@ -86,8 +95,8 @@ export default function Blogpost(props){
 }
 
 export const query = graphql`
-query {
-    contentfulBlogPost(title: {glob: "毎日*"}){
+query($id: String!) {
+    contentfulBlogPost(id:{ eq: $id}){
         title
         publishDateJP:publishDate(formatString: "YYYY年MM月DD日")
         publishDate

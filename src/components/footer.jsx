@@ -13,6 +13,7 @@ export const Footer = () => {
                     gatsbyImageData(
                         layout: FULL_WIDTH, 
                         placeholder: BLURRED,
+                        quality: 89,
                     )
                 }
             }
@@ -50,7 +51,7 @@ export const Footer = () => {
             </ul>
             </div>
             <div className={"back"}>
-                <GatsbyImage image={data.pattern.childImageSharp.gatsbyImageData} style={{height: "100%"}}alt="" />
+                <GatsbyImage image={data.pattern.childImageSharp.gatsbyImageData} style={{height: "100%"}} alt="" />
             </div>
         </footer>
     )
