@@ -7,6 +7,7 @@ import { Layout } from "../components/Layout";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS } from "@contentful/rich-text-types";
 import { Seo } from "../components/seo";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 
 const options = {
     renderNode: {
@@ -33,11 +34,17 @@ const options = {
     },
 }
 export default function Blogpost(props){
-    const { data, pageContext} = props;
+    const { data, pageContext, location} = props;
+    console.log(data)
 
     return (
         <>
-            <Seo pageTitle={data.contentfulBlogPost.title} />
+            <Seo 
+            pageTitle={data.contentfulBlogPost.title} 
+            pagedesc={`${documentToPlainTextString(JSON.parse(data.contentfulBlogPost.content.raw)).slice(0, 70)}...`}
+            pagepath={location.pathname}
+            blogimg={`https:${data.contentfulBlogPost.eyecatch.file.url}`}
+            />
             <Layout>
                 <div className="eyecatch">
                     <figure>
@@ -106,7 +113,7 @@ query($id: String!) {
             id
         }
         eyecatch {
-        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED,)
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED,)
             description
             file {
                 details {
@@ -115,7 +122,7 @@ query($id: String!) {
                         width
                     }
                 }
-            url
+                url
             }
         }
         content{

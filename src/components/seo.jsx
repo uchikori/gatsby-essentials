@@ -3,7 +3,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 export const Seo = (props) => {
-    const {pagetitle, pagedesc, pagepath, pageimg} = props;
+    const {pagetitle, pagedesc, pagepath, pageimg, blogimg} = props;
 
     const data = useStaticQuery(graphql `
         query {
@@ -21,7 +21,7 @@ export const Seo = (props) => {
     const title = pagetitle ? `${pagetitle}|${data.site.siteMetadata.title} ` : data.site.siteMetadata.title;
     const description = pagedesc || data.site.siteMetadata.description;
     const url = pagepath ? `${data.site.siteMetadata.siteUrl}${pagepath}` : data.site.siteMetadata.siteMetadata;
-    const imgurl = pageimg ? `${data.site.siteMetadata.siteUrl}${pageimg}` : `${data.site.siteMetadata.siteUrl}/thumb.jpg`
+    const imgurl = pageimg ? `${data.site.siteMetadata.siteUrl}${pageimg}` : blogimg || `${data.site.siteMetadata.siteUrl}/thumb.jpg`
     return (
         <Helmet>
             <html lang={data.site.siteMetadata.lang} />
