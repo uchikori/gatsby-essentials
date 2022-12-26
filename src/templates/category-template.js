@@ -12,15 +12,15 @@ export default function blog(props) {
     return(
         <>
         <Seo
-        pagetitle="ブログ"
-        pagedesc="ESSENTIALSのブログです"
+        pagetitle={`CATEGORY: ${pageContext.catName}`}
+        pagedesc={`「${pageContext.catName}」のカテゴリーページです`}
         pagepath={location.pathname}
         pageimg={null}
         />
         <Layout>
             <section className="content bloglist">
                 <div className="container">
-                    <h1 className="bar">RECENT POSTS</h1>
+                    <h1 className="bar">CATEGORY:{pageContext.catName}</h1>
 
                     <div className="posts">
 
@@ -48,7 +48,7 @@ export default function blog(props) {
                         {!pageContext.isFirst && (
                             <li className="prev">
                                 <Link 
-                                to={pageContext.currentPage === 2 ? `/blog/` : `/blog/post/${pageContext.currentPage - 1}`} 
+                                to={pageContext.currentPage === 2 ? `/cat/${pageContext.catSlug}` : `/cat/${pageContext.catSlug}/${pageContext.currentPage - 1}`} 
                                 rel="prev">
                                     <FontAwesomeIcon icon={faChevronLeft} />
                                     <span>前のページ</span>
@@ -58,7 +58,7 @@ export default function blog(props) {
 
                         {!pageContext.isLast && (
                             <li className="next">
-                                <Link to={`/blog/post/${pageContext.currentPage + 1}`} rel="next">
+                                <Link to={`/cat/${pageContext.catSlug}/${pageContext.currentPage + 1}`} rel="next">
                                     <span>次のページ</span>
                                     <FontAwesomeIcon icon={faChevronRight} />
                                 </Link>
