@@ -4,32 +4,36 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const { createPage } = actions
 
     const blogresult = await graphql(`
-        query {
-            allContentfulBlogPost(sort: {publishDate: DESC}) {
-                edges {
-                    node {
-                        id
-                        slug
-                    }
-                    next {
-                        slug
-                        title
-                    }
-                    previous {
-                        slug
-                        title
-                    }
+    query {
+        allContentfulBlogPost(sort: {publishDate: DESC}) {
+            edges {
+                node {
+                    id
+                    slug
+                }
+                next {
+                    slug
+                    title
+                }
+                previous {
+                    slug
+                    title
                 }
             }
-            allContentfulCategory {
-                edges {
-                    node{
-                        categorySlug
-                        id
+        }
+        allContentfulCategory {
+            edges {
+                node{
+                    categorySlug
+                    id
+                    category
+                    blogpost {
+                        title
                     }
                 }
             }
         }
+    }
     `)
 
     if(blogresult.errors){
@@ -37,7 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         return
     }
 
-    //記事一覧ページの生成
+    //記事ページの生成
     blogresult.data.allContentfulBlogPost.edges.forEach((edge) => {
         createPage({
             path: `/blog/post/${edge.node.slug}`,
@@ -50,11 +54,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         })
     })
 
-    //記事一覧のページネーション設定
+    //記事一覧ページの生成
     const blogPostPerPage = 6;
     const blogPosts = blogresult.data.allContentfulBlogPost.edges.length;
     const pages = Math.ceil(blogPosts / blogPostPerPage);
-
     const array = Array.from({ length:pages });
     array.forEach((item, index) => {
         createPage({
@@ -70,19 +73,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         })
     })
 
+
     //カテゴリーページの生成
     blogresult.data.allContentfulCategory.edges.forEach((edge) => {
-        createPage({
-            path: `/cat/${edge.node.categorySlug}`,
-            component: path.resolve(`./src/templates/category-template.js`),
-            context: {
-                catId: edge.node.id,
-                skip: 0,        //0番目の記事からスキップする記事の個数
-                limit: 100,     //1ページ内に表示する記事数
-                currentPage: 1, //現在のページ
-                isFirst: true,  //最初のページかどうか
-                isLast: true,   //最後のページかどうか 
-            }
+        const catPostPerPage = 6;
+        const catPosts = edge.node.blogpost.length;
+        const catPages = Math.ceil(catPosts / catPostPerPage);
+        const catArray = Array.from({ length: catPages });
+
+        catArray.forEach((item, index) => {
+            createPage({
+                path: index === 0 ? `/cat/${edge.node.categorySlug}/` : `/cat/${edge.node.categorySlug}/${index + 1}/`,
+                component: path.resolve(`./src/templates/category-template.js`),
+                context: {
+                    catId: edge.node.id,
+                    catName: edge.node.category,
+                    catSlug: edge.node.categorySlug,
+                    skip: catPostPerPage * index, //0番目の記事からスキップする記事の個数
+                    limit: catPostPerPage,        //1ページ内に表示する記事数
+                    currentPage: index + 1,        //現在のページ
+                    isFirst: index + 1 === 1,      //最初のページかどうか
+                    isLast: index + 1 === catPages,   //最後のページかどうか
+                }
+            })
         })
     })
 }
