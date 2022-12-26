@@ -16,6 +16,7 @@ export const Header = () => {
                 <ul>
                     <li className={header.gNavi__text}><Link to={`/`}>TOP</Link></li>
                     <li className={header.gNavi__text}><Link to={`/about/`}>ABOUT</Link></li>
+                    <li className={header.gNavi__text}><Link to={`/blog/`}>BLOG</Link></li>
                 </ul>
             </nav>
             </div>
