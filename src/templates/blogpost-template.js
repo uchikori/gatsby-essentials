@@ -33,6 +33,8 @@ const options = {
         }, []);
     },
 }
+
+
 export default function Blogpost(props){
     const { data, pageContext, location} = props;
     console.log(data)

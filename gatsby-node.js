@@ -40,4 +40,26 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
         })
     })
+
+    //記事一覧のページネーション設定
+    const blogPostPerPage = 6;
+    const blogPosts = blogresult.data.allContentfulBlogPost.edges.length;
+    const pages = Math.ceil(blogPosts / blogPostPerPage);
+
+    console.log(pages);
+
+    const array = Array.from({ length:pages });
+    array.forEach((item, index) => {
+        createPage({
+            path: index === 0 ? `/blog/` : `blog/post/${index + 1}`,
+            component: path.resolve(`./src/templates/blog-template.js`),
+            context: {
+                skip: blogPostPerPage * index,
+                limit: blogPostPerPage,
+                currentPage: index + 1,
+                isFirst: index + 1 === 1,
+                isLast: index + 1 === pages
+            }
+        })
+    })
 }
