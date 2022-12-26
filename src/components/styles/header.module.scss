@@ -1,9 +1,9 @@
 @use './global' as g;
 .gNavi{
     &__text{
-        @include g.font-style(24px, g.$color-pink, 700, 1, 0);
+        @include g.font-style(24px, g.$color-dark, 700, 1, 0);
         @include g.pc{
-            font-size: 2.4rem;
+            font-size: 1.2rem;
         }
     }
 }
