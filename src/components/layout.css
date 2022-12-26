@@ -521,8 +521,12 @@ svg {
 	margin-bottom: 20px;
 }
 
-.posts img {
+.posts figure{
+	max-height: 100%;
 	height: 150px;
+	overflow: hidden;
+}
+.posts img {
 	object-fit: cover;
 }
 .posts h3 {
@@ -535,9 +539,10 @@ svg {
 		font-size: 16px;
 	}
 
-	.posts img {
+	.posts figure{
 		height: 200px;
 	}
+
 }
 
 

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Layout } from "../components/Layout";
 import { Seo } from "../components/seo";
@@ -75,6 +75,31 @@ export default function Home(props){
             <GatsbyImage image={data.berry.childImageSharp.gatsbyImageData} style={{height: "100%"}}alt="赤く熟したベリー" />
           </figure>
         </section>
+
+        <section>
+          <div className="container">
+            <h2 className="sr-only">RECENT POSTS</h2>
+            <div className="posts">
+              {data.allContentfulBlogPost.edges.map(({ node }) => {
+                return (
+                  <article className="post" key={node.id}>
+                    <Link to={`/blog/post/${node.slug}`}>
+                      <figure>
+                        <GatsbyImage 
+                        image={node.eyecatch.gatsbyImageData} 
+                        alt={node.eyecatch.description} 
+                        style={{height: "100%"}}
+                        />
+                      </figure>
+                      <h3>{node.title}</h3>
+
+                    </Link>
+                  </article>
+                )
+              })}
+            </div>
+          </div>
+        </section>
         
       </Layout>
     </>
@@ -123,6 +148,23 @@ query {
       gatsbyImageData(
         layout:FULL_WIDTH,
       )
+    }
+  }
+  allContentfulBlogPost(sort: {publishDate: DESC}, skip:0, limit:4) {
+    edges {
+      node {
+        title
+        id
+        eyecatch {
+            gatsbyImageData(
+              width: 573, 
+              layout: CONSTRAINED,
+              sizes: "(min-width: 1146px) 573px, 50vw"
+            )
+            description
+        }
+        slug
+      }
     }
   }
 }
