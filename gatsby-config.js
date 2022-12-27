@@ -75,6 +75,13 @@ module.exports = {
         defaultDataLayer: { platform: "gatsby" },
       }
     },
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        createLinkInHead: true,
+      }
+    }
+    
   ],
 }
