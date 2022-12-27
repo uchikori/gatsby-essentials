@@ -66,6 +66,14 @@ module.exports = {
         accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
         host: process.env.GATSBY_CONTENTFUL_HOST,
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id:`GTM-KZSF45G`,
+        includeInDevelopment: true,
+        defaultDataLayer: { platform: "gatsby" },
+      }
     }
   ],
 }
