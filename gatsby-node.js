@@ -1,5 +1,4 @@
 const path= require("path")
-const{ documentToPlainTextString } = require("@contentful/rich-text-plain-text-renderer")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
     const { createPage } = actions
