@@ -62,12 +62,12 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        // spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
-        // accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
-        // host: process.env.GATSBY_CONTENTFUL_HOST,
-        spaceId: `4unusez0ikmh`,
-        accessToken: `yb9S_9Le3DhMFNU8CjyWczA0l5g257QOhi2wG96u21o`,
-        host: `cdn.contentful.com`,
+        spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
+        host: process.env.GATSBY_CONTENTFUL_HOST,
+        // spaceId: `4unusez0ikmh`,
+        // accessToken: `yb9S_9Le3DhMFNU8CjyWczA0l5g257QOhi2wG96u21o`,
+        // host: `cdn.contentful.com`,
       }
     },
     {
@@ -84,63 +84,6 @@ module.exports = {
         output: `/`,
         createLinkInHead: true,
       }
-    },
-    {
-      resolve: `gatsby-plugin-feed`,
-      options: {
-        query: `
-        {
-          site {
-            siteMetadata {
-              title
-              description
-              siteUrl
-              site_url:siteUrl
-            }
-          }
-        }
-        `,
-        feeds: [
-          {
-            serialize: ({ query: { site, allContentfulPost } }) => {
-              return allContentfulPost.edges.map((edge) => {
-                return Object.assign(
-                  {},
-                  {
-                    title: edge.node.title,
-                    description: edge.node.content.fields.description,
-                    date: edge.node.publishDate,
-                    url: `${site.siteMetadata.siteUrl}/blog/post/${edge.node.slug}`,
-                  }
-                )
-              })
-            },
-            query: `
-              {
-                allContentfulBlogPost(
-                  sort: { fields: publishDate, order: DESC }
-                ) {
-                  edges {
-                    node {
-                      title
-                      id
-                      slug
-                      publishDate
-                      content {
-                        fields{
-                          description
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            output: `/rss.xml`,
-            title: `ESSENTIAL RSS FEED`,
-          },
-        ],
-      },
-    },    
+    },  
   ],
 }

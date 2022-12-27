@@ -100,18 +100,3 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         })
     })
 }
-
-exports.onCreateNode = ({ node, actions }) => {
-    const { createNodeField } = actions
-
-    if(node.internal.type === `contentfulBlogPostContentRichTextNode`){
-        createNodeField({
-            node,
-            name: `description`,
-            value: `${documentToPlainTextString(JSON.parse(node.content)).slice(
-                0,
-                70
-            )}...`,
-        })
-    }
-}
