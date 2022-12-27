@@ -65,6 +65,9 @@ module.exports = {
         spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
         accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
         host: process.env.GATSBY_CONTENTFUL_HOST,
+        // spaceId: `4unusez0ikmh`,
+        // accessToken: `yb9S_9Le3DhMFNU8CjyWczA0l5g257QOhi2wG96u21o`,
+        // host: `cdn.contentful.com`,
       }
     },
     {
