@@ -74,6 +74,7 @@ module.exports = {
         includeInDevelopment: true,
         defaultDataLayer: { platform: "gatsby" },
       }
-    }
+    },
+    `gatsby-plugin-sitemap`,
   ],
 }
