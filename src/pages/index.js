@@ -113,6 +113,7 @@ query {
       gatsbyImageData(
         layout: FULL_WIDTH, 
         placeholder: BLURRED,
+        quality: 89,
       )
     }
   }
@@ -147,6 +148,8 @@ query {
     childImageSharp {
       gatsbyImageData(
         layout:FULL_WIDTH,
+        placeholder: BLURRED,
+        quality: 89,
       )
     }
   }

@@ -19,7 +19,7 @@ module.exports = {
     title: `ESSENTIALS`,
     description: `おいしい食材と食事を探求するサイト`,
     lang: `ja`,
-    siteUrl: `https://gatsby-firstproject.netlify.app`,
+    siteUrl: `https://netlify.uchiwa-design.net`,
     locale: `ja_JP`,
   },
   plugins: [

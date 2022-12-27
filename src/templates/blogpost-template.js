@@ -66,7 +66,11 @@ export default function Blogpost(props){
                                 <ul>
                                     {data.contentfulBlogPost.category.map((cat) => {
                                         return (
-                                            <li className={cat.categorySlug} key={cat.id}>{cat.category}</li>
+                                            <li className={cat.categorySlug} key={cat.id}>
+                                                <Link to={`/cat/${cat.categorySlug}/`}>
+                                                    {cat.category}
+                                                </Link>
+                                            </li>
                                         )
                                     })}
                                 </ul>
