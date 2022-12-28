@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Layout } from "../components/Layout";
 import { Seo } from "../components/seo";
+import { Form } from "../components/form";
 // import { StaticImage } from "gatsby-plugin-image";
 
 export default function Home(props){
@@ -101,14 +102,7 @@ export default function Home(props){
           </div>
         </section>
 
-        <section>
-          <script src="https://sdk.form.run/js/v2/embed.js"></script>
-          <div
-            className="formrun-embed"
-            data-formrun-form="@ucchii-wa-1672189642"
-            data-formrun-redirect="true">
-          </div>
-        </section>
+        <Form />
         
       </Layout>
     </>

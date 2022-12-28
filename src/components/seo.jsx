@@ -36,6 +36,8 @@ export const Seo = (props) => {
             <meta property="og:locale" content={data.site.siteMetadata.locale}/>
             <meta property="og:image" content={imgurl}/>
             <meta name="twitter:card" content="summary_large_image" />
+            
+            <script src="https://sdk.form.run/js/v2/formrun.js"></script>
         </Helmet>
     )
 }
